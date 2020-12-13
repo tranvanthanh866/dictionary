@@ -9,17 +9,18 @@
 namespace App\Http\Controllers\Dictionary;
 
 
+use App\Http\Controllers\Controller;
 use App\Http\Crawler\CambridgeCrawl;
 
-class CrawlerController extends CambridgeCrawl
+class CrawlerController extends Controller
 {
-    public function __construct($word = "endurance")
+    public function __construct()
     {
-        parent::__construct($word);
     }
 
-    public function crawler() {
-        $this->crawlData();
+    public function crawler($word = "endurance") {
+        $crawlCambridge = new CambridgeCrawl($word);
+        $crawlCambridge->crawlData();
     }
 
 }
