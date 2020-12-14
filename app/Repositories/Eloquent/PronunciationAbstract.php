@@ -1,15 +1,12 @@
 <?php
 namespace App\Repositories\Eloquent;
 
-abstract PronunciationAbstract 
+abstract class PronunciationAbstract
 {
-    public $name;
 
     public function __construct()
     {
         
     }
-
-    
 
 }

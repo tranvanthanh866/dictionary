@@ -10,13 +10,14 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
+        @livewireStyles
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        @livewireStyles
-        <!-- Scripts -->
     </head>
-    <body class="font-sans antialiased">
-        {{ $slot }}
+    <body>
+        <div class="font-sans text-gray-900 antialiased">
+            {{ $slot }}
+        </div>
         @livewireScripts
     </body>
 </html>

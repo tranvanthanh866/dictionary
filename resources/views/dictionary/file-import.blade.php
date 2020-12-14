@@ -1,7 +1,18 @@
-<x-jet-action-section>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Import Word') }}
-        </h2>
-    </x-slot>
-</x-jet-action-section>
+
+<x-guest-layout>
+<div class="container">
+    <div class="card bg-light mt-3">
+        <div class="card-header">
+            Import
+        </div>
+        <div class="card-body">
+            <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file" class="form-control">
+                <br>
+                <button class="btn btn-success">Import User Data</button>
+            </form>
+        </div>
+    </div>
+</div>
+</x-guest-layout>

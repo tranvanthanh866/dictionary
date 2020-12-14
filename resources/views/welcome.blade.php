@@ -16,7 +16,7 @@
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <form action="">
                 <div style="display: flex">
-                    <x-jet-input id="q" class="block mt-1 flex-1" type="text" name="q" :value="old('q')" required autofocus autocomplete="name" />
+                    <x-jet-input id="q" class="block mt-1 flex-1" type="text" name="q" :value="old('q')" required autofocus autocomplete="off" />
                     <x-jet-button class="ml-2">
                         find
                     </x-jet-button>

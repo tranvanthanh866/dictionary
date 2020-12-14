@@ -8,6 +8,9 @@ use App\Models\SentenceExample;
 use App\Models\Describe;
 use App\Models\Type;
 use App\Models\Word;
+use App\Http\Crawler\WordCraw;
+use App\Http\Crawler\CambridgeCrawl;
+use Illuminate\Support\Str;
 
 class ImportDictionary implements ToCollection
 {
@@ -18,20 +21,27 @@ class ImportDictionary implements ToCollection
     public function collection(Collection $rows)
     {
         $language_id = 1;
-        foreach ($rows as $row) 
+        foreach ($rows as $row)
         {
             $type = Type::where('name', $row['1'])->first();
 
+            $wordImport = Str::lower($row[0]);
+
             $word = Word::firstOrCreate([
                 'language_id' => $language_id,
-                'name' => $row[0],
+                'name' => $wordImport,
             ]);
 
-            $describe = Describe::create([
+            $describe = Describe::firstOrCreate([
                 'word_id' => $word->id,
                 'type_id' => $type->id,
                 'content' => $row[2],
             ]);
+
+            $wordSearch = str_replace(' ', '-', $wordImport);
+            $wordCrawl = new WordCraw(new CambridgeCrawl($wordSearch));
+            $dataCrawl = $wordCrawl->cambridgeCrawl->dataCrawl;
+            dd($dataCrawl);
 
             // $sentenceExample = SentenceExample::create([
             //     'describe_id' => $describe->id,

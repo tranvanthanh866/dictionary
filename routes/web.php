@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::get('file-import', [ImportController::class, 'fileImportExport']);
 Route::post('import', [ImportController::class, 'fileImport'])->name('import');
+Route::get('crawl', [\App\Http\Controllers\Dictionary\CrawlerController::class, 'crawler'])->name('crawler');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
