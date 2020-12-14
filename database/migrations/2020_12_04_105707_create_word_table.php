@@ -17,7 +17,7 @@ class CreateWordTable extends Migration
 
             $table->bigIncrements('id');
             $table->integer('language_id')->unsigned();
-            $table->string('name', 50)->index();
+            $table->string('name', 50)->unique()->index();
             $table->timestamps();
 
             $table->foreign('language_id')->references('id')->on('language')->onDelete('cascade');
