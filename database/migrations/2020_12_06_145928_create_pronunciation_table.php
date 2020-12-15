@@ -16,12 +16,12 @@ class CreatePronunciationTable extends Migration
         Schema::create('pronunciation', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('describe_id')->unsigned();
-            $table->string('mp3_uk', 191);
-            $table->string('ogg_uk', 191);
-            $table->string('mp3_us', 191);
-            $table->string('ogg_us', 191);
-            $table->string('uk_ipa', 191);
-            $table->string('us_ipa', 191);
+            $table->string('mp3_uk', 191)->nullable();
+            $table->string('ogg_uk', 191)->nullable();
+            $table->string('mp3_us', 191)->nullable();
+            $table->string('ogg_us', 191)->nullable();
+            $table->string('uk_ipa', 191)->nullable();
+            $table->string('us_ipa', 191)->nullable();
             $table->timestamps();
 
             $table->foreign('describe_id')->references('id')->on('describe')->onDelete('cascade');

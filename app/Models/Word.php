@@ -11,4 +11,8 @@ class Word extends Model
 
     protected $table = 'word';
     protected $guarded = ['id'];
+
+    public function describes() {
+
+    }
 }

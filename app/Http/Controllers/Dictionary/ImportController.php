@@ -16,21 +16,22 @@ class ImportController extends Controller
     {
        return view('dictionary.file-import');
     }
-   
+
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function fileImport(Request $request) 
+    public function fileImport(Request $request)
     {
-        Excel::import(new ImportDictionary, $request->file('file')->store('temp'));
+        set_time_limit(0);
+        Excel::import(new ImportDictionary, $request->file('file'));
         return back();
     }
 
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function fileExport() 
+    public function fileExport()
     {
         //return Excel::download(new UsersExport, 'users-collection.xlsx');
-    }    
+    }
 }

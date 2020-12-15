@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SentenceExample extends Model
+class Pronunciation extends Model
 {
     use HasFactory;
 
-    protected $table = 'sentence_example';
+    protected $table = 'pronunciation';
     protected $guarded = ['id'];
 }

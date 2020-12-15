@@ -18,7 +18,7 @@ class CreateDescribeTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('word_id')->unsigned();
             $table->integer('type_id')->unsigned();
-            $table->string('content', 191);
+            $table->text('content');
             $table->timestamps();
 
             $table->foreign('word_id')->references('id')->on('word')->onDelete('cascade');

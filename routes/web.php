@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dictionary\HomeController;
 use App\Http\Controllers\Dictionary\ImportController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'home']);
 
 Route::get('file-import', [ImportController::class, 'fileImportExport']);
 Route::post('import', [ImportController::class, 'fileImport'])->name('import');

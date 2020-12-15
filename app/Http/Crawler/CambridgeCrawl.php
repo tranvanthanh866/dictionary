@@ -40,7 +40,6 @@ class CambridgeCrawl implements CrawlerInterface
         $client = new Client();
         $this->generalNote = $client->request('GET', $this->urlGet)->filter('.page > div .entry-body__el');
         $this->crawlWord();
-        dd($this->dataCrawl);
     }
 
     public function crawlWord()
@@ -48,16 +47,28 @@ class CambridgeCrawl implements CrawlerInterface
         if (count($this->generalNote) == 0) return;
         $this->generalNote->each(function ($node, $index) {
             $word = $node->filter('.di-title > span > span')->text();
+
             if ($word == $this->word) {
                 $this->node = $node;
                 $this->block = $index;
-                $this->crawlAudio();
 
+                $this->dataCrawl[$this->block] = [];
+                $this->dataCrawl[$this->block]['audio'] = [];
+                $this->dataCrawl[$this->block]['ipa'] = [];
+                $this->dataCrawl[$this->block]['example'] = [];
+                $this->dataCrawl[$this->block]['describe'] = '';
+                $this->dataCrawl[$this->block]['typeWord'] = '';
+
+                $this->crawlAudio();
             }
+
+
+
         });
 
 
     }
+
 
     public function crawlAudio()
     {
@@ -70,6 +81,12 @@ class CambridgeCrawl implements CrawlerInterface
         $this->crawlPronunciation();
         $this->crawlDescribe();
         $this->crawlExample();
+        $this->crawlType();
+    }
+
+    public function crawlType() {
+        $typeWord = $this->node->filter('.dpos')->text();
+        $this->dataCrawl[$this->block]['typeWord'] = $typeWord;
     }
 
     public function copyAudio($source, $index, $type)
