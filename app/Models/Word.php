@@ -13,6 +13,6 @@ class Word extends Model
     protected $guarded = ['id'];
 
     public function describes() {
-
+        return $this->hasMany(Describe::class);
     }
 }

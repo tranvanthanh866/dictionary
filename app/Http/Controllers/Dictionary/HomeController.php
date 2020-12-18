@@ -17,10 +17,9 @@ class HomeController extends Controller
         $q = $request->get('q');
         $response = [];
         if(!empty($q)) {
-            $response['word'] = Word::where('name', $q)->first();
+            $response['word'] = Word::with('describes')->where('name', $q)->first();
         }
-
-        return view('welcome', ['word' => $response]);
+        return view('welcome', $response);
     }
 
 }
